@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merrill Psycotherapy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./favicon.webp" />
+  <style>
+    :root {
+      --primary: #007bff;
+      --dark: #222;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+    }
+
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background: var(--light);
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      padding: 16px 0;
+      z-index: 1000;
+      height: 70px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 20px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover { color: var(--primary); }
+    nav a:hover::after { width: 100%; }
+
+    header.hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      height: 100vh;
+      background: url('./main.jpg') center/cover no-repeat;
+      color: white;
+      position: relative;
+    }
+
+    header.hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+
+    header.hero > * { position: relative; z-index: 1; }
+
+    header.hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    header.hero p {
+      font-size: 1.2rem;
+      color: #eee;
+      margin-top: 10px;
+    }
+
+    /* main { margin-top: 100vh; } */
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+      background: white;
+    }
+
+    section:nth-child(even) { background: var(--light); }
+
+    h2 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      width: 50px;
+      height: 3px;
+      background: var(--primary);
+      display: block;
+      margin: 10px auto 0;
+    }
+
+    p {
+      max-width: 700px;
+      margin: 0 auto 20px;
+      color: var(--gray);
+    }
+
+    /* Contact Form Styling */
+    .contact-section {
+      background: var(--dark);
+      color: var(--dark);
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .contact-section h2::after {
+      background: white;
+    }
+
+    form.contact-form {
+      max-width: 700px;
+      margin: 40px auto 0;
+      background: white;
+      color: var(--dark);
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    form.contact-form input,
+    form.contact-form textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: none;
+      transition: border 0.3s ease;
+    }
+
+    form.contact-form input:focus,
+    form.contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    form.contact-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 20px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form.contact-form button:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      header.hero h1 { font-size: 2.2rem; }
+      nav a { margin: 0 10px; }
+      form.contact-form { padding: 25px; }
+    }
+
+    .about-section {
+  padding: 100px 20px;
+  background: var(--light);
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.about-content {
+  flex: 1 1 500px;
+  text-align: left;
+}
+
+.about-content h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about-content h4 {
+  color: var(--gray);
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-content p {
+  color: var(--gray);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.skills .skill {
+  margin-bottom: 15px;
+}
+
+.skills .skill span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.progress {
+  width: 100%;
+  height: 12px;
+  background: #eee;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: var(--dark);
+  color: white;
+  text-align: right;
+  padding-right: 8px;
+  line-height: 12px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+.about-buttons {
+  margin-top: 30px;
+}
+
+.about-buttons .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-right: 10px;
+}
+
+.about-buttons .btn.primary {
+  background: var(--dark);
+  color: white;
+}
+
+.about-buttons .btn.primary:hover {
+  background: var(--primary);
+}
+
+.about-buttons .btn.outline {
+  border: 2px solid var(--dark);
+  color: var(--dark);
+}
+
+.about-buttons .btn.outline:hover {
+  background: var(--dark);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-content {
+    text-align: center;
+  }
+
+  .progress-bar {
+    text-align: center;
+    padding-right: 0;
+  }
+}
+
+.timeline-section {
+  background: white;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.timeline-section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.timeline-section h2::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background: var(--primary);
+  display: block;
+  margin: 12px auto 0;
+}
+
+.timeline-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  /* max-width: 1100px; */
+  margin: 0 auto;
+  position: relative;
+}
+
+.timeline-container::before {
+  /* content: ''; */
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 3px;
+  background: #e0e0e0;
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  background: white;
+  padding: 20px;
+  max-width: 180px;
+  text-align: center;
+  z-index: 1;
+}
+
+.timeline-item::before {
+  /* content: ''; */
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #fff;
+  z-index: 2;
+}
+
+.timeline-year {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.timeline-item p {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+.timeline-item:hover::before {
+  background: var(--dark);
+  transform: translateX(-50%) scale(1.1);
+  transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .timeline-container {
+    flex-direction: column;
+    /* align-items: center; */
+  }
+
+  .timeline-container::before {
+    width: 3px;
+    height: 100%;
+    top: 0;
+    left: 20px;
+    transform: none;
+  }
+
+  .timeline-item {
+    max-width: 100%;
+    text-align: left;
+    padding-left: 60px;
+  }
+
+  .timeline-item::before {
+    left: 20px;
+    top: 10px;
+  }
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 3px;
+    display: none;
+  }
+
+  .nav-container {
+  width: 90%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  /* Animate burger to X when active */
+  .burger.active div:nth-child(1) {
+    transform: rotate(45deg);
+    top: 8px;
+    position: absolute;
+  }
+  
+  .burger.active div:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger.active div:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 8px;
+    position: absolute;
+  }
+  
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: -25px;
+    background: white;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    gap: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links.active {
+    transform: translateX(0);
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+#formStatus {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(-10px);
+  font-weight: 600;
+}
+
+#formStatus.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#formStatus.success {
+  color: green;
+}
+
+#formStatus.error {
+  color: red;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  gap: 20px;               /* space between options */
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;     /* aligns radio and text vertically */
+  gap: 5px;                /* space between radio and text */
+}
+
+
+
+  </style>
+</head>
+<body>
+    <nav>
+    <div class="nav-container">
+        <!-- <div class="logo">
+        <a href="#home">Merrill Hicks</a>
+        </div> -->
+        <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#emergency">What to do in an emergency</a>
+        <a href="#cost">Cost and Contact</a>
+        <a href="#notice">Latest Notice & Availability</a>
+        <a href="#contact">Contact</a>
+        </div>
+        <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+    </div>
+    </nav>
+              
+
+  <header class="hero" id="home">
+    <h1>Merrill Hicks Psychotherapy</h1>
+    <p>From Trauma to Inspiration</p>
+  </header>
+
+  <main>
+    <section id="home">
+        <!-- <h2>About</h2> -->
+        <p>Do you ever wonder how your life would be & what you would do if you were no longer confined by the difficulties you are 
+            experiencing now? Imagine being free from past painful experiences. This can definitely be a reality and I have seen it 
+            happen. It is truly inspiring to witness.</p>
+        <p>I can’t promise you will experience this; but I can promise to do my best as we work together on whatever issues you bring. 
+            And if we fail to achieve this wonder together, it is not your fault. It most likely means I have more to learn.</p>
+    </section>
+    
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-image">
+            <img src="./me.jpg" alt="About image">
+            </div>
+        
+            <div class="about-content">
+            <h2>About Me</h2>
+            <h4>My Background</h4>
+            <p>
+                After leaving school I worked in a Bank, until taking time out and having children. During this time I got 
+                involved in Charity work, which I really enjoyed; but unfortunately it didn’t pay the bills, so I studied to become a 
+                Social Worker, which I thought would allow me to do the work I loved while earning money. Over time I realised it wasn’t 
+                allowing me to do the work that inspired me, so I studied and became a CBT therapist. I really enjoyed this work 
+                and did it for a long time. Then I trained as an EMDR Therapist; and seeing transforming changes in people’s lives, is 
+                what truly inspires me.
+            </p>
+            <p>I have worked in The Priory Hospital and NHS.
+                Now I have a Private Practice.</p>
+        
+            <!-- <div class="skills">
+                <div class="skill">
+                <span>Web Design</span>
+                <div class="progress"><div class="progress-bar" style="width:95%">95%</div></div>
+                </div>
+                <div class="skill">
+                <span>Branding</span>
+                <div class="progress"><div class="progress-bar" style="width:80%">80%</div></div>
+                </div>
+                <div class="skill">
+                <span>Development</span>
+                <div class="progress"><div class="progress-bar" style="width:90%">90%</div></div>
+                </div>
+            </div> -->
+        
+            <div class="about-buttons">
+                <!-- <a href="#" class="btn primary">Download C.V</a> -->
+                <a href="#contact" class="btn outline">Contact Me</a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="timeline-section">
+        <h2>Qualifications & Training</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-item">
+            <span class="timeline-year">1997</span>
+            <p>Qualified as a Social Worker BA(SS), majoring in Social Work and Psychology.</p>
+            </div>
+        
+            <div class="timeline-item">
+            <span class="timeline-year">2002</span>
+            <p>I became an ASW (Approved social worker – currently called AHMP). After receiving a mental health social work award, I became 
+                an ASW (Approved Social Worker), currently called AHMP (Approved Mental Health Practitioner)</p>
+            </div>
+        
+            <div class="timeline-item">
+            <span class="timeline-year">2003</span>
+            <p>Post Qualifying award in social work</p>
+            </div>
+        
+            <div class="timeline-item">
+            <span class="timeline-year">2006</span>
+            <p>Postgraduate Diploma in CBT</p>
+            </div>
+        
+            <div class="timeline-item">
+            <span class="timeline-year">2012</span>
+            <p>Became a CBT Supervisor</p>
+            </div>
+        
+            <div class="timeline-item">
+            <span class="timeline-year">2018</span>
+            <p>Completed EMDR training</p>
+            </div>
+        </div>
+
+        <p>I am currently working towards EMDR accreditation, and I sometimes ask my clients if I may record our Sessions. 
+            This is because, in order to become accredited, 
+            I need to submit recordings of some of my sessions to my Supervisor, as evidence of the quality of my work.</p>
+
+        <p>Personally, if I was a client, I wouldn’t like my sessions recorded for someone else to listen to, even although 
+            I know the person listening is judging the therapist and not me. So, although I might ask if you would 
+            be willing to give me permission to record, it is perfectly fine if you decline. It won’t affect our relationship, 
+            or your therapy in any way.</p>
+    </section>
+          
+              
+
+    <section id="emergency">
+      <h2>What to do in an emergency</h2>
+      <p>
+            Please note – I am <strong>unable</strong> to provide a Crisis Service.
+            <br><br>
+            If you need urgent help or advice, but it is not life threatening, you can call <strong>111</strong>. 
+            Alternatively, you can call <strong>Samaritans 24 hours a day, 7 days a week on 116 123.</strong>
+            You can also speak to someone you trust, or contact your GP.
+            <br><br>
+            <strong>If you or anyone else is in immediate danger of harm – CALL 999.
+            
+            Or go to the A&E Department of the nearest hospital if you have time to do that.</strong>
+      </p>
+    </section>
+
+    <section id="cost">
+      <h2>Cost and Contact</h2>
+
+    <p>
+            <strong>Address:</strong> Merrill Hicks Psychotherapy, Colchester, Essex<br>
+            <strong>Phone:</strong> 07799 391737<br>
+            <strong>Email:</strong> merrillhickspsychotherapy@gmail.com
+    </p>
+    <p>
+            <strong>My Working Days & Hours:</strong><br>
+            Tuesdays, Wednesdays, Thursdays - 8.30am – 5.00pm.
+            I offer appointments both In Person and Online.<br><br>
+            
+            There is no Secretary at this practice so emails and telephone calls are only responded to on my working days. 
+            Outside these working hours, you can leave a message, and I will respond as soon as possible when I am in the office.
+    </p>
+    <br>
+    <p>
+            <strong>Attending & Paying for Therapy:</strong><br>
+
+            I don’t ask clients to sign up for a particular number of sessions; and I have no contracts they need to sign; and I don’t send out Bills. 
+            All I ask is that clients pay me the agreed fee directly after each session. In cash for In-Person sessions and directly into my bank
+            account for On-line sessions. I give receipts immediately for cash payments and once a month for On-line sessions.
+            <br><br>
+            I require at least 24hours notice for any cancellations, otherwise the full fee is payable.
+            <br><br>
+            I also require clients to attend sessions at least weekly, less frequent attendance interferes with momentum.
+            <br><br>
+            As we have no therapy contract, you are free to terminate sessions at any time. 
+            I just require 24 hours notice. I would however, suggest that you give yourself at least 3-4 sessions to decide whether or not 
+            the therapy is worth the cost, because we need to get to know each other and we need a good shared understanding of your 
+            difficulties before starting intervention.
+            <br><br>
+            <strong>Cost:</strong>
+            <br>
+            Counselling / Psychotherapy £50 per Session (50 minutes) and £75 per Session (80minutes).
+            <br><br>
+            <strong>Low Cost Psychotherapy:</strong>
+            <br>
+            I offer a few low cost Sessions £40 per Session (50 minutes) for those who feel they really need therapy but can’t afford it. 
+            If you need one of these appointments, please let me know and send information about your financial situation.
+    </p>
+    </section>
+
+    <section id="notice">
+      <h2>Latest Notice</h2>
+      <p style='color:red'>Availability updates will appear here</p>
+    </section>
+
+    <!-- CONTACT US FORM -->
+    <section id="contact" class="contact-section">
+      <h2>Contact Me</h2>
+      <p>If you would like to Book a Therapy Session, or if you would just like to talk about possibly attending therapy, please complete 
+          the online submission form below. I will then call you to talk through any concerns you may have; or to book an appointment for you, 
+          should you wish one.</p>
+          <section id="contact" class="contact-section">
+                <h2>Contact Me</h2>
+                <p>If you would like to book a session or ask a question, fill out the form below.</p>
+              
+                <form class="contact-form" id="contactForm">
+                  <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <small class="error-message"></small>
+                  </div>
+              
+                  <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <small class="error-message"></small>
+                  </div>
+              
+                  <div class="form-group">
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <small class="error-message"></small>
+                  </div>
+              
+                  <div class="form-group">
+                    <textarea name="messageText" rows="5" placeholder="Your Message" required></textarea>
+                    <small class="error-message"></small>
+                  </div>
+              
+                  <p>If I call and you are unavailable, may I leave a message with whoever answers the phone?</p>
+                  <div class="form-group radio-group">
+                        <label>
+                          <input type="radio" name="leaveMessage" value="Yes" required> Yes
+                        </label>
+                        <label>
+                          <input type="radio" name="leaveMessage" value="No"> No
+                        </label>
+                        <small class="error-message"></small>
+                      </div>
+              
+                  <button type="submit">Send Message</button>
+                  <p id="formStatus" style="margin-top:10px; color:green;"></p>
+                </form>
+              </section>              
+              
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Merrill Hicks Psychotherapy.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+<script>
+        const burger1 = document.getElementById('burger');
+        const navLinks1 = document.getElementById('navLinks');
+        
+        // Toggle menu on burger click
+        burger1.addEventListener('click', () => {
+            navLinks1.classList.toggle('active');
+          burger1.classList.toggle('active'); // animate burger to X
+        });
+        
+        // Close menu when a link is clicked (mobile)
+        navLinks1.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            if (navLinks1.classList.contains('active')) {
+                navLinks1.classList.remove('active');
+              burger1.classList.remove('active');
+            }
+          });
+        });
+        </script>
+
+<!-- <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // stop default submission
+          let valid = true;
+          const form = event.target;
+        
+          // Reset all error messages
+          form.querySelectorAll('.error-message').forEach(em => em.style.display = 'none');
+        
+          // Check text inputs and textarea
+          const textFields = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+          for (const field of textFields) {
+            if (!field.value.trim()) {
+              const error = field.nextElementSibling;
+              error.textContent = `Please fill in the "${field.placeholder}" field.`;
+              error.style.display = 'block';
+              field.focus();
+              valid = false;
+              break;
+            }
+          }
+        
+          // Check radio button group
+          const radios = form.querySelectorAll('input[name="leaveMessage"]');
+          const radioChecked = Array.from(radios).some(r => r.checked);
+          if (!radioChecked) {
+            const error = form.querySelector('input[name="leaveMessage"]').closest('.form-group').querySelector('.error-message');
+            error.textContent = 'Please select Yes or No for leaving a message.';
+            error.style.display = 'block';
+            valid = false;
+          }
+        
+          // Submit if everything is valid
+          if (valid) {
+            form.submit();
+          }
+        });
+        </script> -->
+
+<!-- <script>
+const burger2 = document.getElementById('burger');
+const navLinks2 = document.getElementById('navLinks');
+
+burger2.addEventListener('click', () => {
+  navLinks2.classList.toggle('active');
+  burger2.classList.toggle('active'); // animate burger
+});
+</script> -->
+
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "tNljQdoeYdWDo2FYn",
+      });
+   })();
+</script>
+
+<script>
+
+  const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // prevent page reload
+
+    // Clear previous error messages
+    form.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+    let valid = true;
+
+    // Simple validation for required fields
+    form.querySelectorAll('input, textarea').forEach(input => {
+      if (!input.checkValidity()) {
+        const error = input.closest('.form-group').querySelector('.error-message');
+        error.textContent = `Please fill in ${input.placeholder}`;
+        valid = false;
+      }
+    });
+
+    if (!valid) return;
+
+    // Send form using EmailJS
+    emailjs.sendForm('service_aru4hwp', 'template_izaas7d', this)
+      .then(() => {
+        formStatus.textContent = "Message sent successfully!";
+        form.reset();
+      })
+      .catch(err => {
+        console.error('EmailJS error:', err);
+        formStatus.style.color = "red";
+        formStatus.textContent = "Failed to send message. Please try again later.";
+      });
+  });
+</script>
+
+
+<!-- <script>
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  let valid = true;
+  const form = event.target;
+
+  // Reset error messages
+  form.querySelectorAll('.error-message').forEach(em => em.style.display = 'none');
+
+  // Validate text fields
+  const textFields = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+  for (const field of textFields) {
+    if (!field.value.trim()) {
+      const error = field.nextElementSibling;
+      error.textContent = `Please fill in the "${field.placeholder}" field.`;
+      error.style.display = 'block';
+      field.focus();
+      valid = false;
+      break;
+    }
+  }
+
+  // Validate radio buttons
+  const radios = form.querySelectorAll('input[name="message"]');
+  const radioChecked = Array.from(radios).some(r => r.checked);
+  if (!radioChecked) {
+    const error = form.querySelector('input[name="message"]').closest('.form-group').querySelector('.error-message');
+    error.textContent = 'Please select Yes or No for leaving a message.';
+    error.style.display = 'block';
+    valid = false;
+  }
+
+  if (!valid) return;
+
+  // Send email with EmailJS
+  const formData = {
+    name: form.name.value,
+    email: form.email.value,
+    subject: form.subject.value,
+    message: form.messageText.value,
+    leaveMessage: form.leaveMessage.value
+  };
+
+  console.log(formData)
+
+  emailjs.send('service_aru4hwp', 'template_izaas7d', formData)
+    .then(() => {
+        console.log('worked')
+      alert('Message sent successfully!');
+      form.reset();
+    }, (error) => {
+        console.log('error')
+      alert('Oops! Something went wrong. Please try again.');
+      console.error(error);
+    });
+});
+</script> -->
+
+        
+</body>
+</html>
