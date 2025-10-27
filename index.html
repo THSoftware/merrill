@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Merrill Psycotherapy</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="./favicon.webp" />
+  <link rel="icon" type="image/png" href="./favicon.jpg" />
   <style>
     :root {
       --primary: #007bff;
@@ -606,8 +606,8 @@
                 involved in Charity work, which I really enjoyed; but unfortunately it didn’t pay the bills, so I studied to become a 
                 Social Worker, which I thought would allow me to do the work I loved while earning money. Over time I realised it wasn’t 
                 allowing me to do the work that inspired me, so I studied and became a CBT therapist. I really enjoyed this work 
-                and did it for a long time. Then I trained as an EMDR Therapist; and seeing transforming changes in people’s lives, is 
-                what truly inspires me.
+                and did it for a long time, working with an array of emotional & mental health difficulties. Then I trained as an EMDR 
+                Therapist; and seeing transforming changes in people’s lives, is what truly inspires me.
             </p>
             <p>I have worked in The Priory Hospital and NHS.
                 Now I have a Private Practice.</p>
@@ -662,7 +662,7 @@
         
             <div class="timeline-item">
             <span class="timeline-year">2012</span>
-            <p>Became a CBT Supervisor</p>
+            <p>CBT Supervisor</p>
             </div>
         
             <div class="timeline-item">
@@ -694,7 +694,7 @@
             <br><br>
             <strong>If you or anyone else is in immediate danger of harm – CALL 999.
             
-            Or go to the A&E Department of the nearest hospital if you have time to do that.</strong>
+            Or go to the A&E Department of the nearest hospital.</strong>
       </p>
     </section>
 
@@ -724,11 +724,11 @@
             <br><br>
             I require at least 24hours notice for any cancellations, otherwise the full fee is payable.
             <br><br>
-            I also require clients to attend sessions at least weekly, less frequent attendance interferes with momentum.
+            I also require clients to attend sessions at least weekly. Less frequent attendance interferes with momentum. get to know each other and have a good shared understanding
             <br><br>
             As we have no therapy contract, you are free to terminate sessions at any time. 
             I just require 24 hours notice. I would however, suggest that you give yourself at least 3-4 sessions to decide whether or not 
-            the therapy is worth the cost, because we need to get to know each other and we need a good shared understanding of your 
+            the therapy is worth the cost, because we need to get to know each other and have a good shared understanding of your 
             difficulties before starting intervention.
             <br><br>
             <strong>Cost:</strong>
@@ -743,15 +743,15 @@
     </section>
 
     <section id="notice">
-      <h2>Latest Notice</h2>
-      <p style='color:red'>Availability updates will appear here</p>
+      <h2>Availability</h2>
+      <p style='color:red'>I am away for the first three weeks in November 2025 and will not be able to respond to emails or phone calls until I return.  I will, however, have capacity to take on new clients from December 2025.</p>
     </section>
 
     <!-- CONTACT US FORM -->
     <section id="contact" class="contact-section">
       <h2>Contact Me</h2>
       <p>If you would like to Book a Therapy Session, or if you would just like to talk about possibly attending therapy, please complete 
-          the online submission form below. I will then call you to talk through any concerns you may have; or to book an appointment for you, 
+          the online submission form below. I will call you to talk through any concerns you may have; or to book an appointment for you, 
           should you wish one.</p>
           <section id="contact" class="contact-section">
                 <h2>Contact Me</h2>
@@ -769,7 +769,7 @@
                   </div>
               
                   <div class="form-group">
-                    <input type="text" name="subject" placeholder="Subject" required>
+                    <input type="text" name="phoneNumber" placeholder="Phone Number" required>
                     <small class="error-message"></small>
                   </div>
               
@@ -780,18 +780,22 @@
               
                   <p>If I call and you are unavailable, may I leave a message with whoever answers the phone?</p>
                   <div class="form-group radio-group">
-                        <label>
-                          <input type="radio" name="leaveMessage" value="Yes" required> Yes
-                        </label>
-                        <label>
-                          <input type="radio" name="leaveMessage" value="No"> No
-                        </label>
-                        <small class="error-message"></small>
-                      </div>
+                    <label>
+                        <input type="radio" name="leaveMessage" value="Yes" required> Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="leaveMessage" value="No"> No
+                    </label>
+                    <small class="error-message"></small>
+                  </div>
+
+                  <p style='color: cornflowerblue'>Please note that emails can be intercepted in transmission or misdirected.  Please therefore be circumspect in what you disclose in your email.</p>
               
                   <button type="submit">Send Message</button>
-                  <p id="formStatus" style="margin-top:10px; color:green;"></p>
                 </form>
+
+                <!-- Success / Error messages -->
+                <p id="form-status" style="text-align:center; margin-top:10px; font-weight:bold;"></p>
               </section>              
               
     </section>
@@ -889,7 +893,8 @@ burger2.addEventListener('click', () => {
 <script>
 
   const form = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
+//   const formStatus = document.getElementById('formStatus');
+  const statusMsg = document.getElementById("form-status");;
 
   form.addEventListener('submit', function(event) {
     event.preventDefault(); // prevent page reload
@@ -913,13 +918,17 @@ burger2.addEventListener('click', () => {
     // Send form using EmailJS
     emailjs.sendForm('service_aru4hwp', 'template_izaas7d', this)
       .then(() => {
-        formStatus.textContent = "Message sent successfully!";
+        statusMsg.style.color = "green";
+        statusMsg.textContent = "✅ Message sent successfully!";
         form.reset();
+
+        // Optional: Hide message after a few seconds
+        setTimeout(() => { statusMsg.textContent = ""; }, 5000);
       })
       .catch(err => {
-        console.error('EmailJS error:', err);
-        formStatus.style.color = "red";
-        formStatus.textContent = "Failed to send message. Please try again later.";
+        console.error("Email send failed:", error);
+        statusMsg.style.color = "red";
+        statusMsg.textContent = "❌ Failed to send message. Please try again.";
       });
   });
 </script>
