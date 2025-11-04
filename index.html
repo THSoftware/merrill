@@ -348,10 +348,11 @@
 
 .timeline-container {
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  flex-direction: column;
+  /* gap: 40px; */
   /* max-width: 1100px; */
   margin: 0 auto;
   position: relative;
@@ -372,8 +373,8 @@
 .timeline-item {
   position: relative;
   background: white;
-  padding: 20px;
-  max-width: 180px;
+  /* padding: 20px;
+  max-width: 180px; */
   text-align: center;
   z-index: 1;
 }
@@ -428,8 +429,8 @@
 
   .timeline-item {
     max-width: 100%;
-    text-align: left;
-    padding-left: 60px;
+    /* text-align: left;
+    padding-left: 60px; */
   }
 
   .timeline-item::before {
@@ -563,7 +564,6 @@
         <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#emergency">What to do in an emergency</a>
         <a href="#cost">Cost and Contact</a>
         <a href="#notice">Latest Notice & Availability</a>
         <a href="#contact">Contact</a>
@@ -588,8 +588,7 @@
         <p>Do you ever wonder how your life would be & what you would do if you were no longer confined by the difficulties you are 
             experiencing now? Imagine being free from past painful experiences. This can definitely be a reality and I have seen it 
             happen. It is truly inspiring to witness.</p>
-        <p>I can’t promise you will experience this; but I can promise to do my best as we work together on whatever issues you bring. 
-            And if we fail to achieve this wonder together, it is not your fault. It most likely means I have more to learn.</p>
+        <p>I can’t promise you will experience this; but I can promise to do my best as we work together on whatever issues you bring.</p>
     </section>
     
     <section id="about" class="about-section">
@@ -602,15 +601,30 @@
             <h2>About Me</h2>
             <h4>My Background</h4>
             <p>
-                After leaving school I worked in a Bank, until taking time out and having children. During this time I got 
-                involved in Charity work, which I really enjoyed; but unfortunately it didn’t pay the bills, so I studied to become a 
-                Social Worker, which I thought would allow me to do the work I loved while earning money. Over time I realised it wasn’t 
-                allowing me to do the work that inspired me, so I studied and became a CBT therapist. I really enjoyed this work 
-                and did it for a long time, working with an array of emotional & mental health difficulties. Then I trained as an EMDR 
-                Therapist; and seeing transforming changes in people’s lives, is what truly inspires me.
+                After leaving school I worked in a Bank, until taking time out and having children. During this time I became involved in 
+                Charity work, which I really enjoyed; but it didn’t pay the bills, so I studied and became a Social Worker. I thought this would 
+                allow me to do the work I loved while earning money. Over time I realised the system didn’t always allow me the freedom to work 
+                in a way that inspired me; so I studied and became a CBT Therapist.
             </p>
-            <p>I have worked in The Priory Hospital and NHS.
-                Now I have a Private Practice.</p>
+            <p>
+                I really enjoyed CBT and did it for a long time, incorporating other therapy modalities I valued, e.g. ACT 
+                (Acceptance and Commitment Therapy) & Compassion Focused Therapy. I worked with people with an array of emotional & mental health 
+                difficulties. Then I trained as an EMDR Therapist and added that to my repertoire of interventions. 
+            </p>
+            <p>
+                Helping clients transform their lives by overcoming the problems that hold them back, is what truly inspires me.
+            </p>
+            <p>
+                I have worked in a Private London Hospital and the NHS.
+            </p>
+            <h4>People I Work With</h4>
+            <p>
+                I work with adults who are experiencing any kind of emotional upset - whether it stems from the distant past, or more recent 
+                experiences.  I have extensive experience working with trauma.  I also work with people who are low in mood, or depressed; as 
+                well as with various types of anxiety disorders, e.g. social anxiety, phobias, health anxiety, etc.  I am able to help people 
+                who feel dissatisfied with their life, and would like to change it; but either don't know how to do this, or don't really 
+                know what it is they want to change.
+            </p>
         
             <!-- <div class="skills">
                 <div class="skill">
@@ -680,23 +694,6 @@
             be willing to give me permission to record, it is perfectly fine if you decline. It won’t affect our relationship, 
             or your therapy in any way.</p>
     </section>
-          
-              
-
-    <section id="emergency">
-      <h2>What to do in an emergency</h2>
-      <p>
-            Please note – I am <strong>unable</strong> to provide a Crisis Service.
-            <br><br>
-            If you need urgent help or advice, but it is not life threatening, you can call <strong>111</strong>. 
-            Alternatively, you can call <strong>Samaritans 24 hours a day, 7 days a week on 116 123.</strong>
-            You can also speak to someone you trust, or contact your GP.
-            <br><br>
-            <strong>If you or anyone else is in immediate danger of harm – CALL 999.
-            
-            Or go to the A&E Department of the nearest hospital.</strong>
-      </p>
-    </section>
 
     <section id="cost">
       <h2>Cost and Contact</h2>
@@ -724,7 +721,7 @@
             <br><br>
             I require at least 24hours notice for any cancellations, otherwise the full fee is payable.
             <br><br>
-            I also require clients to attend sessions at least weekly. Less frequent attendance interferes with momentum. get to know each other and have a good shared understanding
+            I also require clients to attend sessions at least weekly. Less frequent attendance interferes with momentum.
             <br><br>
             As we have no therapy contract, you are free to terminate sessions at any time. 
             I just require 24 hours notice. I would however, suggest that you give yourself at least 3-4 sessions to decide whether or not 
