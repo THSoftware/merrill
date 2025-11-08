@@ -669,7 +669,7 @@
         
             <div class="timeline-item">
             <span class="timeline-year">2002</span>
-            <p>I became an ASW (Approved social worker – currently called AHMP). After receiving a mental health social work award, I became 
+            <p>After receiving a mental health social work award, I became 
                 an ASW (Approved Social Worker), currently called AHMP (Approved Mental Health Practitioner)</p>
             </div>
         
@@ -734,7 +734,7 @@
             <br><br>
             As we have no therapy contract, you are free to terminate sessions at any time. 
             I just require 24 hours notice. I would however, suggest that you give yourself at least 3-4 sessions to decide whether or not 
-            the therapy is worth the cost, get to know each other and have a good shared understanding of your 
+            the therapy is worth the cost, because we need to get to know each other and have a good shared understanding of your 
             difficulties before starting intervention.
             <br><br>
             <strong>Cost:</strong>
@@ -762,8 +762,9 @@
           <section id="contact" class="contact-section">
                 <h2>Contact Me</h2>
                 <p>If you would like to book a session or ask a question, fill out the form below.</p>
-              
-                <form class="contact-form" id="contactForm">
+
+                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                  <input type="hidden" name="access_key" value="eee6d3ae-c138-48de-87c7-cda8e51ed277">
                   <div class="form-group">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <small class="error-message"></small>
@@ -815,190 +816,67 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-<script>
-        const burger1 = document.getElementById('burger');
-        const navLinks1 = document.getElementById('navLinks');
-        
-        // Toggle menu on burger click
-        burger1.addEventListener('click', () => {
-            navLinks1.classList.toggle('active');
-          burger1.classList.toggle('active'); // animate burger to X
-        });
-        
-        // Close menu when a link is clicked (mobile)
-        navLinks1.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            if (navLinks1.classList.contains('active')) {
-                navLinks1.classList.remove('active');
-              burger1.classList.remove('active');
+  <script>
+    const form = document.getElementById('contactForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById("form-status");
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              statusMsg.style.color = "green";
+              statusMsg.textContent = "✅ Message sent successfully!";
+              form.reset();
+            } else {
+              statusMsg.style.color = "red";
+              statusMsg.textContent = "❌ Failed to send message. Please try again.";
+              alert("Error: " + data.message);
             }
-          });
-        });
-        </script>
 
-<!-- <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-          event.preventDefault(); // stop default submission
-          let valid = true;
-          const form = event.target;
-        
-          // Reset all error messages
-          form.querySelectorAll('.error-message').forEach(em => em.style.display = 'none');
-        
-          // Check text inputs and textarea
-          const textFields = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
-          for (const field of textFields) {
-            if (!field.value.trim()) {
-              const error = field.nextElementSibling;
-              error.textContent = `Please fill in the "${field.placeholder}" field.`;
-              error.style.display = 'block';
-              field.focus();
-              valid = false;
-              break;
-            }
-          }
-        
-          // Check radio button group
-          const radios = form.querySelectorAll('input[name="leaveMessage"]');
-          const radioChecked = Array.from(radios).some(r => r.checked);
-          if (!radioChecked) {
-            const error = form.querySelector('input[name="leaveMessage"]').closest('.form-group').querySelector('.error-message');
-            error.textContent = 'Please select Yes or No for leaving a message.';
-            error.style.display = 'block';
-            valid = false;
-          }
-        
-          // Submit if everything is valid
-          if (valid) {
-            form.submit();
+        } catch (error) {
+            alert("Something went wrong. Please try again.");
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+  </script>
+
+    <script>
+      const burger1 = document.getElementById('burger');
+      const navLinks1 = document.getElementById('navLinks');
+      
+      // Toggle menu on burger click
+      burger1.addEventListener('click', () => {
+          navLinks1.classList.toggle('active');
+        burger1.classList.toggle('active'); // animate burger to X
+      });
+      
+      // Close menu when a link is clicked (mobile)
+      navLinks1.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navLinks1.classList.contains('active')) {
+              navLinks1.classList.remove('active');
+            burger1.classList.remove('active');
           }
         });
-        </script> -->
-
-<!-- <script>
-const burger2 = document.getElementById('burger');
-const navLinks2 = document.getElementById('navLinks');
-
-burger2.addEventListener('click', () => {
-  navLinks2.classList.toggle('active');
-  burger2.classList.toggle('active'); // animate burger
-});
-</script> -->
-
-<script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "tNljQdoeYdWDo2FYn",
       });
-   })();
-</script>
-
-<script>
-
-  const form = document.getElementById('contactForm');
-//   const formStatus = document.getElementById('formStatus');
-  const statusMsg = document.getElementById("form-status");;
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent page reload
-
-    // Clear previous error messages
-    form.querySelectorAll('.error-message').forEach(el => el.textContent = '');
-
-    let valid = true;
-
-    // Simple validation for required fields
-    form.querySelectorAll('input, textarea').forEach(input => {
-      if (!input.checkValidity()) {
-        const error = input.closest('.form-group').querySelector('.error-message');
-        error.textContent = `Please fill in ${input.placeholder}`;
-        valid = false;
-      }
-    });
-
-    if (!valid) return;
-
-    // Send form using EmailJS
-    emailjs.sendForm('service_aru4hwp', 'template_izaas7d', this)
-      .then(() => {
-        statusMsg.style.color = "green";
-        statusMsg.textContent = "✅ Message sent successfully!";
-        form.reset();
-
-        // Optional: Hide message after a few seconds
-        setTimeout(() => { statusMsg.textContent = ""; }, 5000);
-      })
-      .catch(err => {
-        console.error("Email send failed:", error);
-        statusMsg.style.color = "red";
-        statusMsg.textContent = "❌ Failed to send message. Please try again.";
-      });
-  });
-</script>
-
-
-<!-- <script>
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-
-  let valid = true;
-  const form = event.target;
-
-  // Reset error messages
-  form.querySelectorAll('.error-message').forEach(em => em.style.display = 'none');
-
-  // Validate text fields
-  const textFields = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
-  for (const field of textFields) {
-    if (!field.value.trim()) {
-      const error = field.nextElementSibling;
-      error.textContent = `Please fill in the "${field.placeholder}" field.`;
-      error.style.display = 'block';
-      field.focus();
-      valid = false;
-      break;
-    }
-  }
-
-  // Validate radio buttons
-  const radios = form.querySelectorAll('input[name="message"]');
-  const radioChecked = Array.from(radios).some(r => r.checked);
-  if (!radioChecked) {
-    const error = form.querySelector('input[name="message"]').closest('.form-group').querySelector('.error-message');
-    error.textContent = 'Please select Yes or No for leaving a message.';
-    error.style.display = 'block';
-    valid = false;
-  }
-
-  if (!valid) return;
-
-  // Send email with EmailJS
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    subject: form.subject.value,
-    message: form.messageText.value,
-    leaveMessage: form.leaveMessage.value
-  };
-
-  console.log(formData)
-
-  emailjs.send('service_aru4hwp', 'template_izaas7d', formData)
-    .then(() => {
-        console.log('worked')
-      alert('Message sent successfully!');
-      form.reset();
-    }, (error) => {
-        console.log('error')
-      alert('Oops! Something went wrong. Please try again.');
-      console.error(error);
-    });
-});
-</script> -->
-
-        
-</body>
+    </script>    
+  </body>
 </html>
